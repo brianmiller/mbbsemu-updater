@@ -1,4 +1,4 @@
-a simple script to update MBBSEMu for rapid testing of automated builds
+A simple script to update MBBSEmu (https://mbbsemu.com) for rapid testing of automated builds
 
 Done:
  * Backup all of MBBSEmu working directory
