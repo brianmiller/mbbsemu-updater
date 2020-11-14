@@ -3,10 +3,10 @@
 #Spaghetti to allow rapid testing of new releases of MBBSEmu.
 #It's not perfect.
 
-VERSION=1.00
+VERSION=1.01
 
 TIME=$(date +%s)
-TOOLS="cut tar wget curl netstat rev head grep tee echo ping chmod"
+TOOLS="cut tar wget curl netstat rev head grep tee echo ping chmod unzip"
 
 #Global function (used for tee/logging)
 function DOIT {
@@ -93,7 +93,7 @@ fi
 for TOOL in $TOOLS; do
 	which $TOOL > /dev/null 2>&1
         if [ ! $? = 0 ]; then
-	        echo "Tool Error: $TOOL is missing, exitng..."
+	        echo "Tool Error: $TOOL is missing, exiting..."
                 exit 1
         fi
 done
@@ -108,7 +108,7 @@ fi
 
 
 #Can we reach mbbsemu.com?
-ping www.mbbsemu.com -c 2 -i 1 > /dev/null 2>&1
+curl --output /dev/null --silent --head --fail "https://www.mbbsemu.com/favicon.ico" > /dev/null 2>&1
 if [ ! $? = 0 ]; then
 	echo "ERROR: Cannot reach www.mbbsemu.com, checking your connection. Exiting..."
 	exit 1
